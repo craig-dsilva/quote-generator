@@ -1,0 +1,14 @@
+.quote {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 5px;
+}
+
+.quote-text {
+  grid-column: 1 / 3;
+}
+
+.quote-author {
+  grid-column: 2;
+  grid-row: 3;
+}
