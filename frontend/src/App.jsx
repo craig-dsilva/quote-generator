@@ -6,7 +6,9 @@ const App = () => {
 
   const fetchQuote = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:3000/random");
+      const res = await fetch(
+        "https://craig-dsilva-quote-generator-backend.hosting.codeyourfuture.io/random",
+      );
       const data = await res.json();
       setQuote(data);
     } catch (error) {
