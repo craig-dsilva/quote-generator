@@ -21,15 +21,17 @@ const App = () => {
   }, [fetchQuote]);
 
   return (
-    <>
+    <div className="container">
       {quote && (
         <p className="quote">
           <q className="quote-text">{quote.quote}</q>
           <em className="quote-author">{`- ${quote.author}`}</em>
         </p>
       )}
-      <button onClick={fetchQuote}>New Quote</button>
-    </>
+      <button className="quote-generator" onClick={fetchQuote}>
+        New Quote
+      </button>
+    </div>
   );
 };
 
