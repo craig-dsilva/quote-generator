@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import AddQuote from "./components/AddQuote";
 import "./App.css";
 
 const App = () => {
@@ -6,9 +7,7 @@ const App = () => {
 
   const fetchQuote = useCallback(async () => {
     try {
-      const res = await fetch(
-        "https://craig-dsilva-quote-generator-backend.hosting.codeyourfuture.io/random",
-      );
+      const res = await fetch("http://localhost:3000/random");
       const data = await res.json();
       setQuote(data);
     } catch (error) {
@@ -22,6 +21,7 @@ const App = () => {
 
   return (
     <div className="container">
+      <AddQuote />
       {quote && (
         <p className="quote">
           <q className="quote-text">{quote.quote}</q>
