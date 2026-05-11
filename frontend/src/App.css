@@ -1,3 +1,17 @@
+.add-quote {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-quote-button {
+  margin-top: 2em;
+  background-color: #0064ff;
+}
+
+.cancel-button {
+  background-color: #bd2130;
+}
+
 .quote {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -14,11 +28,7 @@
 }
 
 .quote-generator {
-  border: 0;
-  border-radius: 5px;
-  color: #fff;
   background-color: #04aa6d;
-  padding: 1em;
 }
 
 @media (min-width: 800px) {

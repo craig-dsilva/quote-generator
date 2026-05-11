@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddQuote = () => {
+const AddQuote = ({ addQuoteToggle }) => {
   const [quoteQuery, setQuoteQuery] = useState("");
   const [authorQuery, setAuthorQuery] = useState("");
   const [formError, setFormError] = useState(false);
@@ -26,7 +26,7 @@ const AddQuote = () => {
   };
 
   return (
-    <div>
+    <div className="add-quote">
       <label htmlFor="quote">Quote: </label>
       <input
         type="text"
@@ -43,7 +43,12 @@ const AddQuote = () => {
         value={authorQuery}
         onChange={(e) => setAuthorQuery(e.target.value)}
       />
-      <button onClick={submitQuote}>Submit</button>
+      <button className="add-quote-button" onClick={submitQuote}>
+        Submit
+      </button>
+      <button onClick={addQuoteToggle} className="cancel-button">
+        Cancel
+      </button>
       {formError && <p>Please fill in both fields</p>}
     </div>
   );
