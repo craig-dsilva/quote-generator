@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
+import AddQuote from "./components/AddQuote";
 import "./App.css";
 
 const App = () => {
   const [quote, setQuote] = useState();
+  const [addQuote, setAddQuote] = useState(false);
 
   const fetchQuote = useCallback(async () => {
     try {
-      const res = await fetch(
-        "https://craig-dsilva-quote-generator-backend.hosting.codeyourfuture.io/random",
-      );
+      const res = await fetch("https://craig-dsilva-quote-generator-backend.hosting.codeyourfuture.io/random");
       const data = await res.json();
       setQuote(data);
     } catch (error) {
@@ -16,12 +16,21 @@ const App = () => {
     }
   }, []);
 
+  const addQuoteToggle = () => setAddQuote(!addQuote);
+
   useEffect(() => {
     fetchQuote();
   }, [fetchQuote]);
 
   return (
     <div className="container">
+      {addQuote ? (
+        <AddQuote addQuoteToggle={addQuoteToggle} />
+      ) : (
+        <button className="add-quote-button" onClick={addQuoteToggle}>
+          Add Quote
+        </button>
+      )}
       {quote && (
         <p className="quote">
           <q className="quote-text">{quote.quote}</q>
@@ -29,7 +38,7 @@ const App = () => {
         </p>
       )}
       <button className="quote-generator" onClick={fetchQuote}>
-        New Quote
+        Random Quote
       </button>
     </div>
   );
