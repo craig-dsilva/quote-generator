@@ -12,13 +12,16 @@ const AddQuote = ({ addQuoteToggle }) => {
         throw new Error("Empty field in quote form.");
       }
       setFormError(false);
-      const res = await fetch("http://localhost:3000/addquote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://craig-dsilva-quote-generator-backend.hosting.codeyourfuture.io/addquote",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quoteQuery, authorQuery }),
         },
-        body: JSON.stringify({ quoteQuery, authorQuery }),
-      });
+      );
       const data = await res.json();
     } catch (error) {
       console.error(error);
