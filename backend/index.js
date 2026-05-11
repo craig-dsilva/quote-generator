@@ -15,6 +15,8 @@ app.get("/random", (req, res) => {
 });
 
 app.post("/addquote", (req, res) => {
+  const { quote, author } = req.body;
+  if (!quote || !author) return res.status(422).send("Empty field in data.");
   addQuote(req.body);
   res.status(201).send(req.body);
 });

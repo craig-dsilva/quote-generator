@@ -3,9 +3,15 @@ import { useState } from "react";
 const AddQuote = () => {
   const [quoteQuery, setQuoteQuery] = useState("");
   const [authorQuery, setAuthorQuery] = useState("");
+  const [formError, setFormError] = useState(false);
 
   const submitQuote = async () => {
     try {
+      if (!quoteQuery || !authorQuery) {
+        setFormError(true);
+        throw new Error("Empty field in quote form.");
+      }
+      setFormError(false);
       const res = await fetch("http://localhost:3000/addquote", {
         method: "POST",
         headers: {
@@ -38,6 +44,7 @@ const AddQuote = () => {
         onChange={(e) => setAuthorQuery(e.target.value)}
       />
       <button onClick={submitQuote}>Submit</button>
+      {formError && <p>Please fill in both fields</p>}
     </div>
   );
 };
