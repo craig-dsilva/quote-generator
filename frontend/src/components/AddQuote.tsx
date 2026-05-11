@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 const AddQuote = ({ addQuoteToggle }) => {
-  const [quoteQuery, setQuoteQuery] = useState("");
-  const [authorQuery, setAuthorQuery] = useState("");
+  const [quote, setQuote] = useState("");
+  const [author, setAuthor] = useState("");
   const [formError, setFormError] = useState(false);
 
   const submitQuote = async () => {
     try {
-      if (!quoteQuery || !authorQuery) {
+      if (!quote || !author) {
         setFormError(true);
         throw new Error("Empty field in quote form.");
       }
@@ -19,10 +19,11 @@ const AddQuote = ({ addQuoteToggle }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ quoteQuery, authorQuery }),
+          body: JSON.stringify({ quote, author }),
         },
       );
       const data = await res.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -35,16 +36,16 @@ const AddQuote = ({ addQuoteToggle }) => {
         type="text"
         name="quote"
         id="quote"
-        value={quoteQuery}
-        onChange={(e) => setQuoteQuery(e.target.value)}
+        value={quote}
+        onChange={(e) => setQuote(e.target.value)}
       />
       <label htmlFor="author">Author: </label>
       <input
         type="text"
         name="author"
         id="author"
-        value={authorQuery}
-        onChange={(e) => setAuthorQuery(e.target.value)}
+        value={author}
+        onChange={(e) => setAuthor(e.target.value)}
       />
       <button className="add-quote-button" onClick={submitQuote}>
         Submit
